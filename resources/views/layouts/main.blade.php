@@ -49,13 +49,23 @@
               <h5 class="modal-title" id="exampleModalLabel">Вход</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-              <form id="auth">
+              <form id="auth"  method="POST" action="/auth">
+                @csrf
                 <div class="modal-body">
-                  <input type="text" name="fio" required placeholder="ФИО" class="form-control"> <br>
-                  <input type="password" name="pass" required placeholder="Пароль" class="form-control"> <br>                
+                  <input type="text" name="login" placeholder="Логин" class="form-control">
+                  <div class="invalid-feedback" id="loginError">                   
+                  </div><br>
+                  <input type="password" name="password" placeholder="Пароль" class="form-control"> 
+                  <div class="invalid-feedback" id="passwordError">                   
+                  </div><br> 
+                  <div class="invalid-feedback" id="formError">                   
+                  </div><br> 
+                  <div class="alert alert-danger" style="display: none" role="alert">
+                   
+                  </div>              
                 </div>
                 <div class="modal-footer">             
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="submit" class="btn btn-primary">Save changes</button>
                 </div>
               </form>        
           </div>
@@ -74,20 +84,26 @@
             </div>
            
               <div class="modal-body">
-                <input type="text" name="fio" required placeholder="ФИО" class="form-control">               
-                  <div class="invalid-feedback">
-                    Looks bad!
+                <input type="text" name="fio"  placeholder="ФИО" class="form-control">               
+                  <div class="invalid-feedback" id="fioError">
+                   
                   </div> <br>
-                <input type="text" name="login" required placeholder="Логин" class="form-control">
-                <div class="invalid-feedback">
-                  Логин уже был
+                <input type="text" name="login"  placeholder="Логин" class="form-control">
+                <div class="invalid-feedback" id="loginError">
+                 
                 </div>  <br>
-                <input type="email" name="email" required placeholder="Эллектронная почта" class="form-control">  <br>              
-                <input type="password" name="pass1" required placeholder="Введите пароль" class="form-control">  <br>                 
+                <input type="text" name="email"  placeholder="Эллектронная почта" class="form-control"> 
+                <div class="invalid-feedback" id="emailError">
+                  
+                </div> <br>              
+                <input type="password" name="pass1"  placeholder="Введите пароль" class="form-control"> 
+                <div class="invalid-feedback" id="pass1Error">
+                  
+                </div> <br>                 
                                  
-                <input type="password" name="pass2" required placeholder="Повторите пароль" class="form-control"> <br>                
-                <div class="invalid-feedback">
-                  Пароли не совпадают!
+                <input type="password" name="pass2"  placeholder="Повторите пароль" class="form-control">                 
+                <div class="invalid-feedback" id="pass2Error">
+               
                 </div>
             </div>
             <div class="modal-footer">             

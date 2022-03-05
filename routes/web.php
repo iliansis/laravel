@@ -13,9 +13,10 @@ use App\Http\Controllers\regController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome')->name('home');
+// });
 
+Route::get('/',[regController::class,'index'])->name('home');
 Route::post('/reg',[regController::class,'reg'])->name('reg');
 Route::post('/auth',[regController::class,'auth'])->name('auth');

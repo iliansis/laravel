@@ -2,25 +2,51 @@ $('form#reg').on('submit',function(e){
     e.preventDefault();
 
     let info=$(this).serializeArray();
-    // console.log(info);
-     
-    //  } else {
-    //      $('input[name=login]').addClass('is-invalid');
-    //      $('input[name=pass1]').addClass('is-invalid');
-    //      $('input[name=pass2]').addClass('is-invalid');
-    //      $('div#errorPass').text('Пароли не совпадают');
-    //  }
-
-    if(info[4].value==info[5].value){
+   
         $.ajax({
             url:$(this).attr('action'),
             type:$(this).attr('method'),
             data:info,
             success:function(res){
-                console.log(res);
+                window.location.href='/';
             }, error:function(res){
-               console.log(res.responseJSON['errors']);
-               $.each(res.responseJSON['errors']);               
+                $('form#reg input').removeClass('is-invalid');
+               $.each(res.responseJSON['errors'],function(index,value){
+                   $('form#reg input[name="' + index + '"]').addClass('is-invalid');
+                   $('div#' + index + 'Error').text(value);
+               })
+                            
+            }
+        });
+
+});
+
+
+$('form#auth').on('submit',function(e){
+    e.preventDefault();
+
+    let info=$(this).serializeArray();
+   
+        $.ajax({
+            url:$(this).attr('action'),
+            type:$(this).attr('method'),
+            data:info,
+            success:function(res){
+                window.location.href='/';
+            }, error:function(res){1
+               $.each(res.responseJSON['errors'],function(index,value){
+                   $('form#auth input[name="' + index + '"]').addClass('is-invalid');
+                   $('div#' + index + 'Error').text(value); 
+
+                   if (index=='form'){
+                    $('div#' + index + 'Error').slideDown(300);
+                } else {
+                 $('form#auth input[name="' + index + '"]').addClass('is-invalid');
+                 $('div#' + index + 'Error').text(value);
+                }
+               })
+               
+                            
             }
         });
 
