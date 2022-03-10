@@ -7,12 +7,15 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Cat;
+use App\Models\Order;
 
 class regController extends Controller
 {
 
     public function index(){
-        return view('welcome');
+        $orders=Order::all();
+        return view('welcome',['orders'=>$orders]);
     }
 
     public function reg(Request $r){

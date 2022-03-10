@@ -15,26 +15,30 @@
   <section id="zz">
     <div class="col-6">
         <h3>Оставьте свою заявку</h3>
-        <form action="" class="multipart/form-data"></form>
-        <input type="text" class="form-control" name="adress" placeholder="Адресс">
-        <div class="invalid-feedback" id="adressError">                   
-      </div><br>
-      <input type="text" class="form-control"  name="desc" placeholder="Описание">
-        <div class="invalid-feedback" id="adressError">                   
-      </div><br>
-      <select class="form-control">
-          {{-- @foreach
-            
-  
-          @endforeach --}}
-          <option value="2d дизайн">2d дизайн</option>
-          <option value="3d дизайн">3d дизайн</option>
-      </select >         
-    <br>
-    <input type="file" class="form-control"  name="photo_start" placeholder="Вставьте пожалуйста фото вашего проекта">
-        <div class="invalid-feedback" id="adressError">                   
-      </div><br>
-    <button type="submit" class="btn btn-primary">Создать заявку</button>
+        <form id="addOrder" action="/addOrder" method="POST" enctype="multipart/form-data">
+          @csrf <!-- {{ csrf_field() }} -->
+          <input type="text" class="form-control" name="adress" placeholder="Адресс">
+          <div class="invalid-feedback" id="adressError">                   
+        </div><br>
+        <input type="text" class="form-control"  name="desc" placeholder="Описание">
+          <div class="invalid-feedback" id="adressError">                   
+        </div><br>
+        <select class="form-control">
+            @foreach($cat as $c)
+              <option value="{{$c->name}}">{{$c->name}}</option>  
+            @endforeach
+            <option value="2d дизайн">2d дизайн</option>
+            <option value="3d дизайн">3d дизайн</option>
+        </select >         
+      <br>
+      <input type="file" class="form-control"  name="photo_start" accept=".png, .jpg, .bmp" placeholder="Вставьте пожалуйста фото вашего проекта">
+          <div class="invalid-feedback" id="fileError">                   
+        </div><br>
+      <button type="submit" class="btn btn-primary">Создать заявку</button>
+        </form>
+        
+      <br>
+
       <br>
 
 
