@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\regController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +19,14 @@ use App\Http\Controllers\regController;
 // });
 
 Route::get('/',[regController::class,'index'])->name('home');
-Route::post('/reg',[regController::class,'reg'])->name('reg');
-Route::post('/auth',[regController::class,'auth'])->name('auth');
+
+Route::middleware(['guest'])->group(function(){
+    Route::post('/reg',[regController::class,'reg'])->name('reg');
+    Route::post('/auth',[regController::class,'auth'])->name('auth');
+});
+
+Route::middleware(['auth'])->group(function(){
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+    Route::get('/profile',[AuthController::class,'profile'])->name('profile');
+});
+

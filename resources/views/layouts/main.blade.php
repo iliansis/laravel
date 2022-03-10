@@ -34,8 +34,13 @@
               </li>
             </ul>
             <form class="d-flex">
+              @if(Auth::check())
+              <a  class="btn btn-primary me-md-3" >Личный кабинет</a>
+              <a href="{{route('logout')}}" class="btn btn-primary me-md-3" >Выход</a>
+              @else
                 <a type="button" class="btn btn-primary me-md-3"  data-bs-toggle="modal" data-bs-target="#auth">Вход</a>
                 <a type="button" class="btn btn-primary me-md-3"  data-bs-toggle="modal" data-bs-target="#reg">Регистраиця</a>
+                @endif
             </form>
           </div>
         </div>
@@ -128,7 +133,7 @@
 
         
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-    <script src="../js/main.js"></script>
+    <script src="js/main.js"></script>
 
   </body>
 </html>

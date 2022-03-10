@@ -8,14 +8,13 @@ $('form#reg').on('submit',function(e){
             type:$(this).attr('method'),
             data:info,
             success:function(res){
-                window.location.href='/';
+                window.location.href='../';
             }, error:function(res){
                 $('form#reg input').removeClass('is-invalid');
                $.each(res.responseJSON['errors'],function(index,value){
                    $('form#reg input[name="' + index + '"]').addClass('is-invalid');
                    $('div#' + index + 'Error').text(value);
-               })
-                            
+               })                            
             }
         });
 
@@ -33,7 +32,8 @@ $('form#auth').on('submit',function(e){
             data:info,
             success:function(res){
                 window.location.href='/';
-            }, error:function(res){1
+            }, 
+            error:function(res){
                $.each(res.responseJSON['errors'],function(index,value){
                    $('form#auth input[name="' + index + '"]').addClass('is-invalid');
                    $('div#' + index + 'Error').text(value); 
