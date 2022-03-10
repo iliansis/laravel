@@ -30,12 +30,12 @@
                 <a class="nav-link active" aria-current="page" href="#">Пользователи</a>                
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">что-то</a>
+                <a class="nav-link active" aria-current="page" href="#">Что-то</a>
               </li>
             </ul>
             <form class="d-flex">
               @if(Auth::check())
-              <a  class="btn btn-primary me-md-3" >Личный кабинет</a>
+              <a href="{{route('profile')}}"  class="btn btn-primary me-md-3" >Личный кабинет</a>
               <a href="{{route('logout')}}" class="btn btn-primary me-md-3" >Выход</a>
               @else
                 <a type="button" class="btn btn-primary me-md-3"  data-bs-toggle="modal" data-bs-target="#auth">Вход</a>
