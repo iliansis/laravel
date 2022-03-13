@@ -53,5 +53,6 @@ class regController extends Controller
             return response()->json(['errors'=>['form'=>'Ошибка авторизации']],401);
         }
     }   
+    
 }
 

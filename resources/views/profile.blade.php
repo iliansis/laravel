@@ -17,18 +17,16 @@
         <h3>Оставьте свою заявку</h3>
         <form id="addOrder" action="/addOrder" method="POST" enctype="multipart/form-data">
           @csrf <!-- {{ csrf_field() }} -->
-          <input type="text" class="form-control" name="adress" placeholder="Адресс">
+          <input type="text" class="form-control" name="name" placeholder="Адресс">
           <div class="invalid-feedback" id="adressError">                   
         </div><br>
         <input type="text" class="form-control"  name="desc" placeholder="Описание">
           <div class="invalid-feedback" id="adressError">                   
         </div><br>
-        <select class="form-control">
+        <select class="form-control" name="cats">
             @foreach($cat as $c)
-              <option value="{{$c->name}}">{{$c->name}}</option>  
-            @endforeach
-            <option value="2d дизайн">2d дизайн</option>
-            <option value="3d дизайн">3d дизайн</option>
+              <option value="{{$c->id}}">{{$c->name}}</option>  
+            @endforeach           
         </select >         
       <br>
       <input type="file" class="form-control"  name="photo_start" accept=".png, .jpg, .bmp" placeholder="Вставьте пожалуйста фото вашего проекта">
@@ -41,21 +39,29 @@
 
       <br>
 
+      <h3>Фильтрация</h3>
+      <select class="form-control" name="filter">
+        <option value="Все">Все</option>
+        <option value="Новая">Новая</option>
+        <option value="Принято в работу">Принято в работу</option>
+        <option value="Выполнено">Выполнено</option>
+      </select><br><br>
 
 <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-    <div class="col p-4 d-flex flex-column position-static">
-      <strong class="d-inline-block mb-2 text-primary">категория</strong>
-      <h3 class="mb-0">Featured post</h3>
-      <div class="mb-1 text-muted">Nov 12</div>
-      <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-danger">Удалить к хуям</a>
+  @foreach($orders as $o)
+  <div class="col p-4 d-flex flex-column position-static">
+      <strong class="d-inline-block mb-2 text-primary">категория <span>{{$o->cats}}</span></strong>
+      <h3 class="mb-0">Адресс <span>{{$o->name}}</span></h3>
+      <div class="mb-1 text-muted">{{$o->status}}</div>
+      <p class="card-text mb-auto">Описание:<span>{{$o->desc}}</span></p>
+      <a href="{{route('deleteOrder', $o->id)}}"  class="btn btn-danger">Удалить</a>
     </div>
     <div class="col-auto d-none d-lg-block">
-      <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+     <img src="{{$o->photo_start}}" alt="{{$o->photo_start}}">  
 
     </div>
   </div>
-
+@endforeach
 
 </div> 
   </section>
