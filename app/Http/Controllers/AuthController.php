@@ -19,7 +19,7 @@ class AuthController extends Controller
 
     public function profile(){
         $cat=Cat::all();
-        $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cat')->get();
+        $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cats')->get();
         return view('profile',['cat'=>$cat,'orders'=>$orders]);
     }
 
@@ -54,8 +54,16 @@ class AuthController extends Controller
     public function filter(Request $r){
         switch($r->status){
             case 'Все':
-                $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cat')->get();
+                $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cats')->get();
                 break;
+
+                default:
+                $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cats')
+                ->where('orders.status',$r->status)->get();
+                break;
+
+                // return view('incl.order',['order'=>$orders]);
+                return 'qwe';
         }
     }
 

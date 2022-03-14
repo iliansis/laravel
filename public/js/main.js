@@ -90,28 +90,20 @@ $('form#addOrder').on('submit',function(e){
 
 $('select#filter').change(function(){
     let status = $(this).val();
-
     
     $.ajax({
-        url:$(this).attr('action'),
-        type:$(this).attr('method'),
+        url:'/profile/filter',
+        type:'POST',
         data:{status: status},
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
         success:function(res){
            $('div#orders').html(res);
+        // console.log(res);
         }, 
         error:function(res){
-           $.each(res.responseJSON['errors'],function(index,value){
-               $('form#addOrder input[name="' + index + '"]').addClass('is-invalid');
-               $('div#' + index + 'Error').text(value); 
-
-               if (index=='form'){
-                $('div#' + index + 'Error').slideDown(300);
-            } else {
-             $('form#addOrder input[name="' + index + '"]').addClass('is-invalid');
-             $('div#' + index + 'Error').text(value);
-            }
-           })
-           
+            console.log(res);
                         
         }
     });
