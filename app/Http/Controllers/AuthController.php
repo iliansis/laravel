@@ -19,14 +19,14 @@ class AuthController extends Controller
 
     public function profile(){
         $cat=Cat::all();
-        $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cat')->get();
+        $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cats')->get();
         return view('profile',['cat'=>$cat,'orders'=>$orders]);
     }
 
     public function addOrder(Request $r){
       
         $validator=Validator::make($r->all(),[
-            'name'=>'required|string',
+            'adres'=>'required|string',
             'desc'=>'required|string',
             'photo_start'=>'required|file'                   
         ]);
@@ -36,7 +36,7 @@ class AuthController extends Controller
         // $contents = $file->openFile()->fread($file->getSize()); 
 
         Order::create([
-            'name'=>$r->name,
+            'adres'=>$r->adres,
             'desc'=>$r->desc,
             'cats'=>$r->cats,
             'user'=>Auth::user()->id,
@@ -52,11 +52,22 @@ class AuthController extends Controller
     }
 
     public function filter(Request $r){
+        
         switch($r->status){
             case 'Все':
-                $orders=Order::where('user',Auth::user()->id)->join('cats','cats.id','orders.cat')->get();
+                $orders=Order::select('orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start')->join('cats','cats.id','orders.cats')->where('user',Auth::user()->id)->get();
                 break;
+
+                default:
+                $orders=Order::select('orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start')->join('cats','cats.id','orders.cats')->where('user',Auth::user()->id)
+                ->where('orders.status', $r->status)->get();
+                break;
+                
+                
+                // return 'qwe';
         }
+        return view('incl.order',['orders'=>$orders]);
+
     }
 
 }

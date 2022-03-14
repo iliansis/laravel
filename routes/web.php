@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/profile',[AuthController::class,'profile'])->name('profile');
     Route::get('/profile/deleteOrder/{id}', [AuthController::class,'deleteOrder'])->name('deleteOrder');
+    Route::post('/profile/filter' , [AuthController::class,'filter'])->name('filter');
     Route::post('/addOrder',[AuthController::class,'addOrder'])->name('addOrder');
        
 });

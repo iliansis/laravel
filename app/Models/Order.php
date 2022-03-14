@@ -12,7 +12,7 @@ class Order extends Model
     protected $table='orders';
 
     protected $fillable=[
-        'name',
+        'adres',
         'desc',
         'user',
         'photo_start',
