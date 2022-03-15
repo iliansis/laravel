@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\regController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\adminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,5 +33,11 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/profile/filter' , [AuthController::class,'filter'])->name('filter');
     Route::post('/addOrder',[AuthController::class,'addOrder'])->name('addOrder');
        
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/superadmin',[adminController::class,'admin'])->name('admin');
+    Route::post('/addCats',[adminController::class,'addCats'])->name('addCats');
+    Route::get('/superadmin/delete/{id}',[adminController::class,'deleteCats'])->name('deleteCats');
 });
 

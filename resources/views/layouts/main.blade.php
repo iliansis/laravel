@@ -36,7 +36,12 @@
             </ul>
             <form class="d-flex">
               @if(Auth::check())
+
+              @if(Auth::user()->is_admin==1)
+                <a href="{{route('admin')}}"  class="btn btn-primary me-md-3" >Панель администратора</a>               
+              @else
               <a href="{{route('profile')}}"  class="btn btn-primary me-md-3" >Личный кабинет</a>
+              @endif
               <a href="{{route('logout')}}" class="btn btn-primary me-md-3" >Выход</a>
               @else
                 <a type="button" class="btn btn-primary me-md-3"  data-bs-toggle="modal" data-bs-target="#auth">Вход</a>
