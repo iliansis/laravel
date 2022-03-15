@@ -22,14 +22,14 @@
         <p class="card-text mb-auto">Описание:<span>{{$o->desc}}</span></p><br>
         @if($o->status=="Новая")
         <div class="col-3">
-            <a href="{{route('deleteOrder', $o->id)}}"  class="btn btn-danger">Удалить</a>
+            <a href="{{route('deleteOrder', $o->id)}}" onclick="return confirm('Вы дейтсивтельно хотите удалить заявку?');"  class="btn btn-danger">Удалить</a>
           </div>
           @endif
       </div>
 
       
       <div class="col-auto d-none d-lg-block">
-       <img src="/storage/{{$o->photo_start}}"}} onclick="return confirm('Вы дейтсивтельно хотите удалить заявку?');" width="300px">  
+       <img src="/storage/{{$o->photo_start}}"}}  width="300px">  
   
       </div>
     </div>

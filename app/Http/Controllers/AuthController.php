@@ -55,11 +55,11 @@ class AuthController extends Controller
         
         switch($r->status){
             case 'Все':
-                $orders=Order::select('orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start')->join('cats','cats.id','orders.cats')->where('user',Auth::user()->id)->get();
+                $orders=Order::select('orders.id as id','orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start')->join('cats','cats.id','orders.cats')->where('user',Auth::user()->id)->get();
                 break;
 
                 default:
-                $orders=Order::select('orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start')->join('cats','cats.id','orders.cats')->where('user',Auth::user()->id)
+                $orders=Order::select('orders.id as id','orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start')->join('cats','cats.id','orders.cats')->where('user',Auth::user()->id)
                 ->where('orders.status', $r->status)->get();
                 break;
                 
