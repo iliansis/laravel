@@ -1,0 +1,26 @@
+{
+  "name": "nodebootstraper",
+  "version": "5.0.0",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "*",
+    "express": "^4.17.2",
+    "express-validator": "^6.14.0",
+    "jsonwebtoken": "^8.5.1",
+    "method-override": "*",
+    "morgan": "*",
+    "nodemon": "^2.0.15",
+    "pug": "*",
+    "serve-favicon": "*",
+    "stylus": "*",
+    "xlsx": "^0.18.2"
+  },
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
+  "scripts": {
+    "start": "nodemon app.js",
+    "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
+  }
+}
