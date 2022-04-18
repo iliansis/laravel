@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Апр 18 2022 г., 15:50
+-- Время создания: Апр 18 2022 г., 17:00
 -- Версия сервера: 10.5.11-MariaDB
 -- Версия PHP: 8.0.8
 
@@ -40,7 +40,8 @@ CREATE TABLE `cats` (
 
 INSERT INTO `cats` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (1, '2d dd', NULL, NULL),
-(2, '3d', '2022-03-15 11:20:32', '2022-03-15 11:20:32');
+(2, '3d', '2022-03-15 11:20:32', '2022-03-15 11:20:32'),
+(3, 'Эскиз', '2022-04-18 08:54:41', '2022-04-18 08:54:41');
 
 -- --------------------------------------------------------
 
@@ -106,12 +107,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `adres`, `desc`, `user`, `photo_start`, `photo_end`, `com`, `cats`, `status`, `created_at`, `updated_at`) VALUES
-(4, 'олег', 'gdfg', 1, 'img/gtTPmzDc3PeaeorxPUUT8Cpa7M0TsX4N0RXGjI55.png', 'img/gtTPmzDc3PeaeorxPUUT8Cpa7M0TsX4N0RXGjI55.png', NULL, 1, 'Выполнено', '2022-03-13 11:39:13', '2022-03-13 11:39:13'),
-(5, 'Киекбаева 11', 'варар', 1, 'img/kcuo5d4fQ9WECzs5Ssk0WA9L6iS0ii7U6mRUlfa5.jpg', 'img/gtTPmzDc3PeaeorxPUUT8Cpa7M0TsX4N0RXGjI55.png', NULL, 1, 'Выполнено', '2022-03-14 12:37:33', '2022-03-14 12:37:33'),
-(6, 'Проспект октября 4/3', 'аввпрап', 1, 'img/h6wS5S3fBKyNRK2L3IB6bwMqFota9R9d8bsRQteI.jpg', 'img/gtTPmzDc3PeaeorxPUUT8Cpa7M0TsX4N0RXGjI55.png', NULL, 1, 'Выполнено', '2022-03-15 10:29:34', '2022-03-15 10:29:34'),
-(7, 'ddfg', 'lkkl;', 1, 'img/DKqreLWXVmeejHb24knNh8ChmZwUp2Bk4YE15f5i.jpg', 'img/gtTPmzDc3PeaeorxPUUT8Cpa7M0TsX4N0RXGjI55.png', NULL, 2, 'Выполнено', '2022-03-16 12:45:47', '2022-03-16 12:45:47'),
-(8, 'ывпварпапр', 'gdfg', 1, 'img/LlaSGim27H3BKeabIsy2HIxtlRE00zoM0AinPHey.png', NULL, NULL, 1, 'Выполнено', '2022-03-16 12:46:16', '2022-03-16 12:46:16'),
-(9, 'Новостройка', 'Новостройка', 1, 'img/3qoIQCOMU2bbK2xZDovtAc0O3eVX43gZGDRB9HCs.png', NULL, NULL, 2, 'Новая', '2022-03-17 01:46:19', '2022-03-17 01:46:19');
+(12, 'Киекбаева 12', 'Нужно придумать дизайн для старой квартиры', 1, 'img/tsh9LjhGnvUhG0gfTOTS5i7MyHRZC1wKwq1FezBs.png', 'img/uBUU5cTSCfatfqtb9L5ILeuQEHXKwMqIEpN2MweL.jpg', NULL, 2, 'Выполнено', '2022-04-18 08:48:41', '2022-04-18 08:55:09'),
+(13, 'Проспект октября 4/3', 'Хотим преобразить помещение', 1, 'img/VHa3yw8WVxyREnXfPnuyS1OJpCqFdmEDvB8vjc19.png', 'img/DHyn5Naw7VjRavyXKdLNRlPT13MlRSXhVtf4uJoW.jpg', NULL, 2, 'Выполнено', '2022-04-18 08:49:53', '2022-04-18 08:55:37'),
+(14, 'улица Цюрупы, 79', 'Хотим сделать квартиру просторнее', 1, 'img/tEQOLPzVGpHRUTp7Q8IVdZZ6NTjq6Gu3FSBUK5Zo.jpg', 'img/sXpxQTk2DgGGKXgPXVEJDkOkp0icPN7u2FDdTdFM.jpg', NULL, 2, 'Выполнено', '2022-04-18 08:53:14', '2022-04-18 08:55:48'),
+(15, 'Новостройка', 'Что-то хочется изменить', 1, 'img/Z2Ef1jolGCk6b5ZogGynA8fOXNWdFbtak1JnzBf1.jpg', 'img/UXZW9xSzPZH2ZgCmdXftdHMlSCSomyl779LXa0dU.jpg', NULL, 3, 'Выполнено', '2022-04-18 08:57:33', '2022-04-18 08:59:19'),
+(16, 'проспект Октября, 28', 'Требуется доработка', 1, 'img/iRFMC4qLwytsikLeDBNB3c85T1OdGepWhBW7kgtR.jpg', 'img/tTNgAoCzGgZnOEmtOj7r17Nj2mluk5hMUBGb1xjO.jpg', NULL, 3, 'Выполнено', '2022-04-18 08:58:31', '2022-04-18 08:59:28');
 
 -- --------------------------------------------------------
 
@@ -231,7 +231,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `cats`
 --
 ALTER TABLE `cats`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `failed_jobs`
@@ -249,7 +249,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT для таблицы `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT для таблицы `personal_access_tokens`
