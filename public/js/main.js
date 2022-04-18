@@ -67,7 +67,7 @@ $('form#addOrder').on('submit',function(e){
             processData:false,
             data:formData,
             success:function(res){
-                window.location.href='/';
+                window.location.href='/profile';
             }, 
             error:function(res){
                $.each(res.responseJSON['errors'],function(index,value){
@@ -125,7 +125,7 @@ $('form#addCats').on('submit',function(e){
             processData:false,
             data:formData,
             success:function(res){
-                window.location.href='/';
+                window.location.href='/superadmin';
             }, 
             error:function(res){
                $.each(res.responseJSON['errors'],function(index,value){
@@ -149,9 +149,10 @@ $('form#addCats').on('submit',function(e){
 
 $('select#change').change(function(){
     let info=$(this).val();
+    // let info=$(this).serializeArray();
 
     id = $(this).attr("data-id")
-    console.log(info)
+    // console.log(info)
     
     if(info=='Принято в работу'){
          $('div#formPhoto'+id).slideUp(300);
@@ -174,9 +175,11 @@ $('select#change').change(function(){
 
 $('form#change').on('submit',function(e){
     e.preventDefault();
-
-    var formData = new FormData($('form#addOrder').get(0));
-
+    id = $(this).attr("data-id");
+    let info= new FormData($('form#change[data-id="'+ id +'"]').get(0));
+    info.append('id', id);
+    // let status=$(this).val();
+    console.log(info);
     
    
         $.ajax({
@@ -185,26 +188,35 @@ $('form#change').on('submit',function(e){
             cache:false,
             contentType:false,
             processData:false,
-            data:formData,
+            //  data:formData,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+            data:info,
+            dataType:'json',
             success:function(res){
-                window.location.href='/';
+                window.location.href='/superadmin';
+                // console.log(res);
             }, 
             error:function(res){
-               $.each(res.responseJSON['errors'],function(index,value){
-                   $('form#addOrder input[name="' + index + '"]').addClass('is-invalid');
-                   $('div#' + index + 'Error').text(value); 
+            //    $.each(res.responseJSON['errors'],function(index,value){
+            //        $('form#change input[name="' + index + '"]').addClass('is-invalid');
+            //        $('div#' + index + 'Error').text(value); 
 
-                   if (index=='form'){
-                    $('div#' + index + 'Error').slideDown(300);
-                } else {
-                 $('form#addOrder input[name="' + index + '"]').addClass('is-invalid');
-                 $('div#' + index + 'Error').text(value);
+            //        if (index=='form'){
+            //         $('div#' + index + 'Error').slideDown(300);
+            //     } else {
+            //      $('form#change input[name="' + index + '"]').addClass('is-invalid');
+            //      $('div#' + index + 'Error').text(value);
+            
                 }
                })
+           
+            
                
                             
-            }
+            
         });
 
-});
+
 

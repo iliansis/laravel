@@ -40,7 +40,22 @@ class adminController extends Controller
     }
 
     public function change(Request $r){
-        
+        // return($r->com);
+
+        if (isset($r->com)){
+            $order =  Order::where('id', $r->id)->get();
+            Order::where('id', $r->id)->update(['com'=>$r->com,'status'=>'Принято в работу']);
+             return response()->json(['success'=>'yes', 'data' => $r->id], 200);
+            // return 'все норм';
+        }else {
+            
+        } if(isset($r->photo_end)){
+            $photo=$r->photo_end->store('img','public');
+            Order::where('id', $r->id)->update(['photo_end'=>$photo,'status'=>'Выполнено']);
+            return response()->json(['success'=>'yes', 'data' => $r->id], 200);
+        } else{
+             return response()->json(400);
+        }
     }
 
 }
