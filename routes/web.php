@@ -38,6 +38,8 @@ Route::middleware(['auth'])->group(function(){
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/superadmin',[adminController::class,'admin'])->name('admin');
     Route::post('/addCats',[adminController::class,'addCats'])->name('addCats');
+    Route::get('/profile/delet/{id}', [AuthController::class,'deleteOrder'])->name('deleteOrder');
     Route::get('/superadmin/delete/{id}',[adminController::class,'deleteCats'])->name('deleteCats');
+    Route::post('/change',[adminController::class,'change'])->name('change');
 });
 

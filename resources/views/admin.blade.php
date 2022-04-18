@@ -78,17 +78,17 @@
         </select><br><br>
         @endif
 
-        <form id="change" action="/change" method="POST" >           
+      
+        <form id="change"  data-id="{{$o->id}}" action="/change" method="POST" enctype="multipart/form-data">                  
          <div id="formDesc{{$o->id}}" style="display: none;" >        
-                <input class="form-control" type="text" name="desc" placeholder="Комментарий"><br>
+                <input class="form-control" type="text" name="com" placeholder="Комментарий"><br>
                 <button class="btn btn-primary" type="submit">Отправить данные</button>
             </div>
-          </form>
+          
 
-            <form id="change" action="/change" method="POST" enctype="multipart/form-data">  
            <div id="formPhoto{{$o->id}}" style="display: none;">
-            <input class="form-control" type="file" name="photo_end" placeholder="Вставьте фотографию"><br>
-            <button class="btn btn-primary" type="submit">Отправить данные</button>
+            <input class="form-control"  accept=" .png, .jpeg, .jpg" type="file" name="photo_end" placeholder="Вставьте фотографию"><br>
+            <button class="btn btn-primary"  type="submit">Отправить данные</button>
            </div>
           </form>               
 
@@ -104,6 +104,7 @@
 
       
       <div class="col-auto d-none d-lg-block">
+        
        <img src="/storage/{{$o->photo_start}}"}}  width="300px">  
   
       </div>

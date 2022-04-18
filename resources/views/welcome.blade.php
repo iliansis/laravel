@@ -11,53 +11,31 @@
 </section>
 
 <section id="orders">
+  <div class="col-4">
+    <h5>Выполненных заявок:<span class="badge bg-secondary">{{$countOrder->count}}</span></h5>
+    <br>
+  </div>
   <div class="container">
     <div class="row">
+      @foreach($orders  as $o)
       <div class="col-3">
           <div class="card" style="width: 18rem;">
-              <img src="img/до.jpg" class="card-img-top" id="img1">
-              <img src="img/после.jpg" class="card-img-top" id="img2">
+            <div class="img">
+              <div class="img1" style="background: url(/storage/{{$o->photo_start}}) center center no-repeat; background-size: cover;"></div>
+              <div class="img2" style="background: url(/storage/{{$o->photo_end}}) center center no-repeat; background-size: cover;"></div>
+            </div>         
+          
               <div class="card-body">
-                <h5 class="card-title">название проекта <p></p></h5>
-                <h6 class="card-text">описание проекта <p></p></h6>
-                <h6 class="card-text">категория <p></p></h6>
+                <h5 class="card-title">название проекта <p>{{$o->adres}}</p></h5>
+                <h6 class="card-text">описание проекта <p>{{$o->desc}}</p></h6>
+                <h6 class="card-text">категория <p>{{$o->name}}</p></h6>
                 <a href="#" class="btn btn-primary">Go somewhere</a>
               </div>
             </div>
       </div>
-  
-      <div class="col-3">
-          <div class="card" style="width: 18rem;">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-      </div>
-  
-      <div class="col-3">
-          <div class="card" style="width: 18rem;">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-      </div>
-  
-      <div class="col-3">
-          <div class="card" style="width: 18rem;">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-      </div>
+      @endforeach
+</div> 
+      
   </div>
   </div>
 </section>

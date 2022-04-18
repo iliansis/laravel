@@ -14,8 +14,11 @@ class regController extends Controller
 {
 
     public function index(){
-        $orders=Order::all();
-        return view('welcome',['orders'=>$orders]);
+        $orders=Order::select('orders.id as id','orders.desc as desc', 'cats.name as name','orders.adres as adres','orders.status as status','orders.photo_start as photo_start','orders.photo_end as photo_end')
+        ->join('cats','cats.id','orders.cats')
+        ->where('orders.status', '=', 'Выполнено')->orderBy(	'orders.created_at','desc')->limit(4)->get();
+        $countOrder=Order::selectRaw('COUNT(orders.id) as count')->where('orders.status','Выполнено')->first();
+        return view('welcome',['orders'=>$orders,'countOrder'=>$countOrder]);
     }
 
     public function reg(Request $r){
