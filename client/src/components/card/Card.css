@@ -1,0 +1,42 @@
+.card{
+    font-family: 'Quicksand',sans-serif;
+    font-family: 'Roboto',sans-serif;
+    background-color: seashell;
+    border-radius: 1.25rem;
+    width: 300px;
+    position: relative;
+}
+.card-button{
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+.DropBloclk{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    background-color: whitesmoke;
+    margin: 0px 20px 10px;
+    border: 1px solid rgba(0,0,0,.125);
+    min-height: 150px;
+}
+.CardTextHover{
+    padding: 20px;
+    display: none;
+}
+.CardText{ 
+    padding: 30px;
+    transition: 0.4s;
+}
+.DropBloclk p{
+    padding: 20px;
+}
+.DropBloclk p:hover{
+    font-size: 20px;
+}
+.footer-card{
+    display: block;
+    height: 60px;
+}
