@@ -21,8 +21,8 @@
       <div class="col-3">
           <div class="card" style="width: 18rem;">
             <div class="img">
-              <div class="img1" style="background: url(/storage/{{$o->photo_start}}) center center no-repeat; background-size: cover;"></div>
-              <div class="img2" style="background: url(/storage/{{$o->photo_end}}) center center no-repeat; background-size: cover;"></div>
+              <div class="img1" style="background: url(public/storage/{{$o->photo_start}}) center center no-repeat; background-size: cover;"></div>
+              <div class="img2" style="background: url(public/storage/{{$o->photo_end}}) center center no-repeat; background-size: cover;"></div>
             </div>         
           
               <div class="card-body">
